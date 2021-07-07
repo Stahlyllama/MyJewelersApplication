@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="Users")
 public class User extends AbstractEntity {
+    //don't know why my caused by hibernate annotation exception no identifier specified for entity went away after adding @Id below
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
