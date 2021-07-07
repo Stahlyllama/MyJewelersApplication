@@ -13,10 +13,6 @@ public class User extends AbstractEntity {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
 
-    public int getId() {
-        return id;
-    }
-
     @NotNull
     @Column(name="username")
     private String username;
@@ -27,12 +23,17 @@ public class User extends AbstractEntity {
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    public User(String username, String password) {
+    public User(int id, String username, String password) {
+        this.id=id;
         this.username=username;
         this.pwHash=encoder.encode(password);
     }
 
     public User(){}
+
+    public int getId() {
+        return id;
+    }
 
     public String getUsername() {
         return username;
@@ -41,5 +42,6 @@ public class User extends AbstractEntity {
         return encoder.matches(password, pwHash);
     }
 }
+
 
 
